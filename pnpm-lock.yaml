@@ -9,44 +9,44 @@ importers:
   .:
     dependencies:
       daisyui:
-        specifier: ^5.5.14
+        specifier: ^5
         version: 5.5.14
       next:
-        specifier: ^16.1.1
+        specifier: ^16
         version: 16.1.1(@babel/core@7.28.5)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
-        specifier: ^19.2.3
+        specifier: ^19
         version: 19.2.3
       react-dom:
-        specifier: ^19.2.3
+        specifier: ^19
         version: 19.2.3(react@19.2.3)
     devDependencies:
       '@tailwindcss/postcss':
-        specifier: ^4.1.18
+        specifier: ^4
         version: 4.1.18
       '@types/node':
-        specifier: ^25.0.3
+        specifier: ^25
         version: 25.0.3
       '@types/react':
-        specifier: ^19.2.7
+        specifier: ^19
         version: 19.2.7
       '@types/react-dom':
         specifier: ^19
         version: 19.2.3(@types/react@19.2.7)
       eslint:
-        specifier: ^9.39.2
+        specifier: ^9
         version: 9.39.2(jiti@2.6.1)
       eslint-config-next:
-        specifier: ^16.1.1
+        specifier: ^16
         version: 16.1.1(@typescript-eslint/parser@8.51.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       prettier:
-        specifier: ^3.7.4
+        specifier: ^3
         version: 3.7.4
       tailwindcss:
-        specifier: ^4.1.18
+        specifier: ^4
         version: 4.1.18
       typescript:
         specifier: ^5
