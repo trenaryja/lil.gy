@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ThemeProvider } from 'next-themes'
+import { Providers } from './providers'
 
 import './globals.css'
 
@@ -11,7 +11,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 	return (
 		<html suppressHydrationWarning lang='en'>
 			<body>
-				<ThemeProvider>{children}</ThemeProvider>
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	)
