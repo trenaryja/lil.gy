@@ -4,7 +4,7 @@ import { ThemeProvider } from 'next-themes'
 import './globals.css'
 
 export const metadata: Metadata = {
-	title: 'Blank Next App',
+	title: 'lil.gy',
 }
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
