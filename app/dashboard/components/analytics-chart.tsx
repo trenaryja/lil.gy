@@ -1,13 +1,13 @@
 'use client'
 
-import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
+import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { format, parseISO } from 'date-fns'
 
-interface AnalyticsChartProps {
+type AnalyticsChartProps = {
 	data: { date: string; clicks: number }[]
 }
 
-export function AnalyticsChart({ data }: AnalyticsChartProps) {
+export const AnalyticsChart = ({ data }: AnalyticsChartProps) => {
 	if (data.length === 0) {
 		return (
 			<div className='h-64 flex items-center justify-center opacity-60'>
@@ -65,6 +65,7 @@ export function AnalyticsChart({ data }: AnalyticsChartProps) {
 									</div>
 								)
 							}
+
 							return null
 						}}
 					/>

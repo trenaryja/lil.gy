@@ -1,12 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { links } from '@/lib/db/schema'
-import { eq } from 'drizzle-orm'
+import { db, links } from '@/db'
+import { noop } from '@/utils'
 import { kv } from '@vercel/kv'
+import { eq } from 'drizzle-orm'
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 
 export const runtime = 'edge'
 
-export async function GET(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
+export const GET = async (req: NextRequest, { params }: { params: Promise<{ slug: string }> }) => {
 	const { slug } = await params
 
 	const link = await db.query.links.findFirst({
@@ -28,9 +29,10 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
 	}
 
 	// Track clicks in KV (non-blocking)
+
 	Promise.all([
-		kv.lpush(`clicks:${link.id}`, JSON.stringify(clickData)).catch(() => {}),
-		kv.incr(`count:${link.id}`).catch(() => {}),
+		kv.lpush(`clicks:${link.id}`, JSON.stringify(clickData)).catch(noop),
+		kv.incr(`count:${link.id}`).catch(noop),
 	])
 
 	return NextResponse.redirect(link.url, 308)

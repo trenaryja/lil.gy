@@ -1,18 +1,22 @@
+import { Header } from '@/components'
+import { ThemeProvider } from '@trenaryja/ui'
 import type { Metadata } from 'next'
-import { Providers } from './providers'
 
 import './globals.css'
 
-export const metadata: Metadata = {
-	title: 'lil.gy',
-}
+export const metadata: Metadata = { title: 'lil.gy' }
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+const RootLayout = async ({ children }: Readonly<{ children: React.ReactNode }>) => {
 	return (
-		<html suppressHydrationWarning lang='en'>
-			<body>
-				<Providers>{children}</Providers>
+		<html suppressHydrationWarning lang='en' className='scroll-smooth antialiased'>
+			<body className='min-h-screen grid grid-rows-[auto_1fr]'>
+				<ThemeProvider>
+					<Header />
+					<main className='full-bleed-container'>{children}</main>
+				</ThemeProvider>
 			</body>
 		</html>
 	)
 }
+
+export default RootLayout

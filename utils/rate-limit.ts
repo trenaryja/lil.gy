@@ -1,17 +1,18 @@
 import { kv } from '@vercel/kv'
 
-interface RateLimitResult {
+type RateLimitResult = {
 	allowed: boolean
 	remaining: number
 	reset: number
 }
 
-export async function checkRateLimit(identifier: string, limit: number, windowMs: number): Promise<RateLimitResult> {
+export const checkRateLimit = async (identifier: string, limit: number, windowMs: number): Promise<RateLimitResult> => {
 	const key = `ratelimit:${identifier}`
 	const now = Date.now()
 	const windowStart = now - windowMs
+	const fallback: RateLimitResult = { allowed: true, remaining: limit, reset: now + windowMs }
 
-	try {
+	return (async () => {
 		await kv.zremrangebyscore(key, 0, windowStart)
 
 		const count = await kv.zcard(key)
@@ -26,10 +27,7 @@ export async function checkRateLimit(identifier: string, limit: number, windowMs
 		await kv.expire(key, Math.ceil(windowMs / 1000))
 
 		return { allowed: true, remaining: limit - count - 1, reset: now + windowMs }
-	} catch {
-		// If KV is not configured, allow the request (for local development)
-		return { allowed: true, remaining: limit, reset: now + windowMs }
-	}
+	})().catch(() => fallback)
 }
 
 export const RATE_LIMITS = {

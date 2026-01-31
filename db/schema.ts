@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, boolean, integer, uuid } from 'drizzle-orm/pg-core'
+import { boolean, integer, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 
 // Links table - userId references WorkOS user ID
 export const links = pgTable('links', {

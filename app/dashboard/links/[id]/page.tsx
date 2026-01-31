@@ -1,10 +1,10 @@
-import { getLinkWithAnalytics } from '@/lib/actions/analytics'
+import { getLinkWithAnalytics } from '@/actions'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { AnalyticsChart } from '../../components/analytics-chart'
 import { formatDistanceToNow } from 'date-fns'
 
-export default async function LinkAnalyticsPage({ params }: { params: Promise<{ id: string }> }) {
+const LinkAnalyticsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 	const { id } = await params
 	const result = await getLinkWithAnalytics(id)
 
@@ -107,3 +107,5 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
 		</div>
 	)
 }
+
+export default LinkAnalyticsPage
