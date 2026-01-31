@@ -1,5 +1,5 @@
 import { getDatabaseInsights } from '@/actions'
-import { StatCard } from '../components/stat-card'
+import { StatCard } from '@/components'
 
 export default async function AdminDatabasePage() {
 	const result = await getDatabaseInsights()

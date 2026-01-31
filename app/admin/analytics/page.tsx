@@ -1,5 +1,5 @@
 import { getSiteWideAnalytics } from '@/actions'
-import { AnalyticsChart } from '@/app/dashboard/components/analytics-chart'
+import { AnalyticsChart } from '@/components'
 
 const AdminAnalyticsPage = async () => {
 	const result = await getSiteWideAnalytics(30)

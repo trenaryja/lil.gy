@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import { getAdminOverview } from '@/actions'
-import { StatCard } from './components/stat-card'
+import { StatCard } from '@/components'
+import Link from 'next/link'
 
 const AdminOverviewPage = async () => {
 	const result = await getAdminOverview()

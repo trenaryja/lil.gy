@@ -1,5 +1,5 @@
 import { requireAdmin } from '@/auth'
-import { AdminNav } from './components/admin-nav'
+import { AdminNav } from '@/components'
 
 const AdminLayout = async ({ children }: { children: React.ReactNode }) => {
 	await requireAdmin()

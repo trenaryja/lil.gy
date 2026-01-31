@@ -1,3 +1,4 @@
+import { isAdmin } from '@/auth'
 import { ThemePicker } from '@trenaryja/ui'
 import { getSignInUrl, withAuth } from '@workos-inc/authkit-nextjs'
 import Image from 'next/image'
@@ -5,7 +6,7 @@ import Link from 'next/link'
 
 export const Header = async () => {
 	const { user } = await withAuth()
-	const signInUrl = user ? null : await getSignInUrl()
+	const [signInUrl, showAdminLink] = await Promise.all([user ? null : getSignInUrl(), user ? isAdmin() : false])
 
 	return (
 		<header className='sticky top-0 frosted-glass full-bleed-container z-10'>
@@ -29,8 +30,15 @@ export const Header = async () => {
 								<li>
 									<Link href='/dashboard'>Dashboard</Link>
 								</li>
+								{showAdminLink && (
+									<li>
+										<Link href='/admin'>Admin</Link>
+									</li>
+								)}
 								<li>
-									<Link href='/auth/signout'>Sign out</Link>
+									<Link href='/auth/signout' prefetch={false}>
+										Sign out
+									</Link>
 								</li>
 							</ul>
 						</div>
