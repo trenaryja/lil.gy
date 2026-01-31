@@ -2,6 +2,8 @@
 
 import { createLink } from '@/actions'
 import { useState, useTransition } from 'react'
+import { LuCircleAlert } from 'react-icons/lu'
+import { ClipboardButton } from './clipboard-button'
 
 export const CreateLinkForm = () => {
 	const [isPending, startTransition] = useTransition()
@@ -11,7 +13,6 @@ export const CreateLinkForm = () => {
 		error?: string
 	} | null>(null)
 	const [showCustomSlug, setShowCustomSlug] = useState(false)
-	const [copied, setCopied] = useState(false)
 
 	const handleSubmit = (formData: FormData) => {
 		setResult(null)
@@ -29,12 +30,6 @@ export const CreateLinkForm = () => {
 		})
 	}
 
-	const handleCopy = (text: string) => {
-		navigator.clipboard.writeText(text)
-		setCopied(true)
-		setTimeout(() => setCopied(false), 2000)
-	}
-
 	const shortUrl = result?.success && result.slug ? `${window.location.origin}/${result.slug}` : null
 
 	return (
@@ -50,7 +45,7 @@ export const CreateLinkForm = () => {
 						required
 						disabled={isPending}
 					/>
-					<button type='submit' className='btn btn-primary min-w-[100px]' disabled={isPending}>
+					<button type='submit' className='btn btn-primary' disabled={isPending}>
 						{isPending ? <span className='loading loading-spinner loading-sm' /> : 'Shorten'}
 					</button>
 				</div>
@@ -92,14 +87,7 @@ export const CreateLinkForm = () => {
 			{/* Error state */}
 			{result?.error && (
 				<div className='animate-in fade-in zoom-in-95 duration-300 mt-4 p-4 rounded-lg bg-error/10 border border-error/20 text-error flex items-start gap-3'>
-					<svg className='w-5 h-5 shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-						<path
-							strokeLinecap='round'
-							strokeLinejoin='round'
-							strokeWidth={2}
-							d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-						/>
-					</svg>
+					<LuCircleAlert />
 					<span className='text-sm'>{result.error}</span>
 				</div>
 			)}
@@ -119,23 +107,7 @@ export const CreateLinkForm = () => {
 								{shortUrl}
 							</a>
 						</div>
-						<button type='button' className='btn btn-sm btn-ghost shrink-0' onClick={() => handleCopy(shortUrl)}>
-							{copied ? (
-								<svg className='w-4 h-4 text-success' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-									<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
-								</svg>
-							) : (
-								<svg className='w-4 h-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-									<path
-										strokeLinecap='round'
-										strokeLinejoin='round'
-										strokeWidth={2}
-										d='M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z'
-									/>
-								</svg>
-							)}
-							<span className='ml-1'>{copied ? 'Copied!' : 'Copy'}</span>
-						</button>
+						<ClipboardButton copy={shortUrl} className='btn btn-sm btn-ghost btn-square' />
 					</div>
 				</div>
 			)}

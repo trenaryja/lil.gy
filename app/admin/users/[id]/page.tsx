@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import { getUserDetails } from '@/actions'
-import { LinkTable } from '../../components/data-table'
+import { LinkTable } from '@/components'
+import Link from 'next/link'
 
 type UserDetailPageProps = {
 	params: Promise<{ id: string }>

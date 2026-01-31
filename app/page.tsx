@@ -1,4 +1,4 @@
-import { CreateLinkForm } from '@/components/create-link-form'
+import { CreateLinkForm } from '@/components'
 import { getSignInUrl, withAuth } from '@workos-inc/authkit-nextjs'
 
 const Home = async () => {

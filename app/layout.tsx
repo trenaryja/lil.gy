@@ -12,7 +12,7 @@ const RootLayout = async ({ children }: Readonly<{ children: React.ReactNode }>)
 			<body className='min-h-screen grid grid-rows-[auto_1fr]'>
 				<ThemeProvider>
 					<Header />
-					<main className='full-bleed-container'>{children}</main>
+					{children}
 				</ThemeProvider>
 			</body>
 		</html>

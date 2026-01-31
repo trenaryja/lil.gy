@@ -1,8 +1,9 @@
 import { getLinkWithAnalytics } from '@/actions'
-import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { AnalyticsChart } from '../../components/analytics-chart'
+import { AnalyticsChart } from '@/components'
 import { formatDistanceToNow } from 'date-fns'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import { LuChevronLeft } from 'react-icons/lu'
 
 const LinkAnalyticsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 	const { id } = await params
@@ -19,15 +20,7 @@ const LinkAnalyticsPage = async ({ params }: { params: Promise<{ id: string }> }
 			<div className='flex items-start justify-between'>
 				<div>
 					<Link href='/dashboard' className='btn btn-ghost btn-sm mb-2'>
-						<svg
-							xmlns='http://www.w3.org/2000/svg'
-							className='h-4 w-4'
-							fill='none'
-							viewBox='0 0 24 24'
-							stroke='currentColor'
-						>
-							<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 19l-7-7 7-7' />
-						</svg>
+						<LuChevronLeft />
 						Back to Links
 					</Link>
 					<h1 className='text-3xl font-bold font-mono'>lil.gy/{link.slug}</h1>
