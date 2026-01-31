@@ -14,7 +14,7 @@ const DashboardPage = async () => {
 	const links = result.data
 
 	return (
-		<main className='full-bleed-container gap-4 content-start grid-rows-[auto_1fr]'>
+		<main className='full-bleed-container p-2 gap-y-4 content-start grid-rows-[auto_1fr]'>
 			<div className='surface p-4 grid gap-2'>
 				<h2 className='font-black'>Create New Link</h2>
 				<CreateLinkForm />
