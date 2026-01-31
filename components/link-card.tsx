@@ -25,11 +25,11 @@ export const LinkCard = ({ link }: LinkCardProps) => {
 
 	return (
 		<div className={`relative surface p-4 grid gap-2 ${!link.isActive ? 'opacity-60' : ''}`}>
-			{!link.isActive && <span className='absolute badge badge-soft badge-xs bottom-2 right-2'>Inactive</span>}
-			<div className='flex justify-between gap-2'>
-				<div className='flex gap-2 items-center'>
+			{!link.isActive && <span className='absolute badge badge-soft badge-sm -top-2.5 right-4'>Inactive</span>}
+			<div className='flex justify-between gap-2 min-w-0'>
+				<div className='flex gap-2 items-center min-w-0 overflow-hidden'>
 					<ClipboardButton copy={shortUrl} className='btn btn-soft btn-square' title='Copy lil URL' />
-					<h1 className='text-2xl font-mono'>lil.gy/{link.slug}</h1>
+					<h1 className='text-2xl font-mono font-black truncate'>lil.gy/{link.slug}</h1>
 				</div>
 				<div className='flex gap-2 items-center'>
 					<Link href={`/dashboard/links/${link.id}`} className='btn btn-soft btn-square btn-primary'>
@@ -59,9 +59,9 @@ export const LinkCard = ({ link }: LinkCardProps) => {
 			<a href={link.url} target='_blank' rel='noopener noreferrer' className='link opacity-70 truncate'>
 				{link.url}
 			</a>
-			<div className='flex gap-4 opacity-50'>
-				<span>{link.clicks} clicks</span>
-				<span>Created {formatDistanceToNow(link.createdAt, { addSuffix: true })}</span>
+			<div className='flex gap-4 justify-between opacity-50 min-w-0'>
+				<span className='truncate'>{link.clicks} clicks</span>
+				<span className='truncate'>Created {formatDistanceToNow(link.createdAt, { addSuffix: true })}</span>
 			</div>
 		</div>
 	)

@@ -9,7 +9,7 @@ export const Header = async () => {
 	const [signInUrl, showAdminLink] = await Promise.all([user ? null : getSignInUrl(), user ? isAdmin() : false])
 
 	return (
-		<header className='sticky top-0 frosted-glass full-bleed-container z-10'>
+		<header className='sticky top-0 frosted-glass z-10'>
 			<div className='flex justify-between items-center p-4'>
 				<Link href='/' className='text-3xl font-black'>
 					lil.gy
