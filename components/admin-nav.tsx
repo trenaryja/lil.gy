@@ -7,7 +7,6 @@ const navItems = [
 	{ href: '/admin', label: 'Overview', exact: true },
 	{ href: '/admin/analytics', label: 'Analytics' },
 	{ href: '/admin/database', label: 'Database' },
-	{ href: '/admin/kv', label: 'KV Store' },
 	{ href: '/admin/users', label: 'Users' },
 ]
 

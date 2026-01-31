@@ -1,7 +1,6 @@
 'use server'
 
 import { clickEvents, db, links } from '@/db'
-import { kv } from '@vercel/kv'
 import { withAuth } from '@workos-inc/authkit-nextjs'
 import { and, desc, eq, gte } from 'drizzle-orm'
 import { aggregateByCountry, aggregateByReferrer, aggregateClicksByDay } from '../shared/analytics-aggregation'
@@ -14,9 +13,6 @@ export const getLinkWithAnalytics = async (linkId: string) => {
 		where: and(eq(links.id, linkId), eq(links.userId, user.id)),
 	})
 	if (!link) return { success: false as const, error: 'Link not found' }
-
-	// Get click count from KV (real-time)
-	const kvClicks = (await kv.get<number>(`count:${linkId}`).catch(() => 0)) ?? 0
 
 	// Get recent clicks from database
 	const thirtyDaysAgo = new Date()
@@ -37,13 +33,10 @@ export const getLinkWithAnalytics = async (linkId: string) => {
 	// Aggregate by referrer
 	const topReferrers = aggregateByReferrer(recentClicks, 10)
 
-	// Update link with combined clicks (database + KV)
-	const totalClicks = Math.max(link.clicks, kvClicks)
-
 	return {
 		success: true as const,
 		data: {
-			link: { ...link, clicks: totalClicks },
+			link,
 			clicksByDay,
 			topCountries,
 			topReferrers,

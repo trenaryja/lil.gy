@@ -24,3 +24,11 @@ export const clickEvents = pgTable('click_events', {
 	country: text('country'),
 	city: text('city'),
 })
+
+// Rate limit events for tracking request frequency
+export const rateLimitEvents = pgTable('rate_limit_events', {
+	id: uuid('id').primaryKey().defaultRandom(),
+	identifier: text('identifier').notNull(),
+	action: text('action').notNull(),
+	timestamp: timestamp('timestamp').defaultNow().notNull(),
+})
