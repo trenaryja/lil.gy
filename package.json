@@ -17,7 +17,6 @@
 	"dependencies": {
 		"@mantine/hooks": "^8.3.13",
 		"@trenaryja/ui": "0.0.1-35",
-		"@vercel/kv": "^3.0.0",
 		"@vercel/postgres": "^0.10.0",
 		"@workos-inc/authkit-nextjs": "^2.13.0",
 		"date-fns": "^4.1.0",
@@ -31,7 +30,6 @@
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.52.0",
 		"@fullstacksjs/eslint-config": "^13.14.0",
 		"@tailwindcss/postcss": "^4.1.18",
 		"@types/node": "^25.1.0",

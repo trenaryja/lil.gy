@@ -3,7 +3,6 @@
 import { requireAdmin } from '@/auth'
 import { clickEvents, db, links } from '@/db'
 import { getToday } from '@/utils'
-import { kv } from '@vercel/kv'
 import { count, gte, sql, sum } from 'drizzle-orm'
 
 const fetchLinkStats = async () => {
@@ -37,11 +36,10 @@ const fetchTodayStats = async (today: Date) => {
 const fetchOverviewData = async () => {
 	const today = getToday()
 
-	const [linkStats, userStats, todayStats, pendingSync] = await Promise.all([
+	const [linkStats, userStats, todayStats] = await Promise.all([
 		fetchLinkStats(),
 		fetchUserStats(),
 		fetchTodayStats(today),
-		kv.llen('sync:pending').catch(() => 0),
 	])
 
 	return {
@@ -52,7 +50,6 @@ const fetchOverviewData = async () => {
 		totalUsers: userStats?.uniqueUsers ?? 0,
 		todayNewLinks: todayStats.todayLinks,
 		todayClicks: todayStats.todayClicks,
-		pendingSync,
 	}
 }
 

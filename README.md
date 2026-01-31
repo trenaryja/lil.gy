@@ -15,7 +15,6 @@ A fast, simple URL shortener with analytics.
 - React 19
 - Tailwind CSS 4 + DaisyUI
 - Drizzle ORM + Neon Postgres
-- Upstash Redis (via @vercel/kv) for click tracking
 - WorkOS AuthKit for authentication
 
 ## Getting Started

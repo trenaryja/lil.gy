@@ -39,26 +39,18 @@ const AdminOverviewPage = async () => {
 				<div className='stats stats-vertical md:stats-horizontal shadow w-full bg-base-200'>
 					<StatCard title='New Links' value={data.todayNewLinks} />
 					<StatCard title='Clicks' value={data.todayClicks} />
-					<StatCard
-						title='Pending KV Sync'
-						value={data.pendingSync}
-						description={data.pendingSync > 0 ? 'Awaiting cron job' : 'All synced'}
-					/>
 				</div>
 			</div>
 
 			{/* Quick links */}
 			<div>
 				<h2 className='text-lg font-semibold mb-4'>Quick Links</h2>
-				<div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
+				<div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
 					<Link href='/admin/analytics' className='btn btn-outline'>
 						View Analytics
 					</Link>
 					<Link href='/admin/database' className='btn btn-outline'>
 						Database Insights
-					</Link>
-					<Link href='/admin/kv' className='btn btn-outline'>
-						KV Store
 					</Link>
 					<Link href='/admin/users' className='btn btn-outline'>
 						All Users
