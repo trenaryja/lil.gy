@@ -1,7 +1,14 @@
 *.tsbuildinfo
 .env*
 !.env.example
+.claude/
 .next
 .vercel
 next-env.d.ts
 node_modules
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

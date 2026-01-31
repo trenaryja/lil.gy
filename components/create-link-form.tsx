@@ -1,9 +1,9 @@
 'use client'
 
+import { createLink } from '@/actions'
 import { useState, useTransition } from 'react'
-import { createLink } from '@/lib/actions/links'
 
-export function CreateLinkForm() {
+export const CreateLinkForm = () => {
 	const [isPending, startTransition] = useTransition()
 	const [result, setResult] = useState<{
 		success: boolean
@@ -13,10 +13,11 @@ export function CreateLinkForm() {
 	const [showCustomSlug, setShowCustomSlug] = useState(false)
 	const [copied, setCopied] = useState(false)
 
-	function handleSubmit(formData: FormData) {
+	const handleSubmit = (formData: FormData) => {
 		setResult(null)
 		startTransition(async () => {
 			const response = await createLink(formData)
+
 			if (response.success) {
 				setResult({ success: true, slug: response.data.slug })
 				const form = document.getElementById('create-link-form') as HTMLFormElement
@@ -28,7 +29,7 @@ export function CreateLinkForm() {
 		})
 	}
 
-	function handleCopy(text: string) {
+	const handleCopy = (text: string) => {
 		navigator.clipboard.writeText(text)
 		setCopied(true)
 		setTimeout(() => setCopied(false), 2000)
@@ -44,7 +45,7 @@ export function CreateLinkForm() {
 					<input
 						type='url'
 						name='url'
-						placeholder='Paste your long URL...'
+						placeholder='Paste your big link...'
 						className='input input-bordered flex-1 bg-base-200/50 focus:bg-base-100 transition-colors'
 						required
 						disabled={isPending}
@@ -67,7 +68,7 @@ export function CreateLinkForm() {
 
 				{/* Custom slug input */}
 				{showCustomSlug && (
-					<div className='animate-scale-in'>
+					<div className='animate-in fade-in zoom-in-95 duration-300'>
 						<div className='flex items-stretch rounded-lg border border-base-300 overflow-hidden bg-base-200/30'>
 							<span className='px-3 flex items-center text-sm text-base-content/50 bg-base-200/50 border-r border-base-300'>
 								lil.gy/
@@ -90,7 +91,7 @@ export function CreateLinkForm() {
 
 			{/* Error state */}
 			{result?.error && (
-				<div className='animate-scale-in mt-4 p-4 rounded-lg bg-error/10 border border-error/20 text-error flex items-start gap-3'>
+				<div className='animate-in fade-in zoom-in-95 duration-300 mt-4 p-4 rounded-lg bg-error/10 border border-error/20 text-error flex items-start gap-3'>
 					<svg className='w-5 h-5 shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
 						<path
 							strokeLinecap='round'
@@ -105,7 +106,7 @@ export function CreateLinkForm() {
 
 			{/* Success state */}
 			{shortUrl && (
-				<div className='animate-scale-in mt-4 p-4 rounded-lg bg-success/10 border border-success/20'>
+				<div className='animate-in fade-in zoom-in-95 duration-300 mt-4 p-4 rounded-lg bg-success/10 border border-success/20'>
 					<div className='flex items-center justify-between gap-4'>
 						<div className='min-w-0'>
 							<p className='text-xs text-success font-medium uppercase tracking-wide mb-1'>Your lil link</p>

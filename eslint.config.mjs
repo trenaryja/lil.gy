@@ -1,22 +1,14 @@
-import nextVitals from 'eslint-config-next/core-web-vitals'
-import nextTs from 'eslint-config-next/typescript'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import { defineConfig } from '@fullstacksjs/eslint-config'
 
-const eslintConfig = defineConfig([
-	...nextVitals,
-	...nextTs,
-	globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
-	{
+/** @type {import('eslint').Linter.Config[]} */
+const config = [
+	...defineConfig({
+		files: ['**/*.ts', '**/*.tsx'],
 		rules: {
-			'react/no-unescaped-entities': 'off',
-			'@next/next/no-img-element': 'off',
-			'@typescript-eslint/no-namespace': 'off',
-			'@typescript-eslint/no-unused-vars': [
-				'error',
-				{ argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
-			],
+			'perfectionist/sort-imports': 'off', // handled by vscode organize imports
+			'@typescript-eslint/consistent-type-definitions': ['error', 'type'],
 		},
-	},
-])
+	}),
+]
 
-export default eslintConfig
+export default config
