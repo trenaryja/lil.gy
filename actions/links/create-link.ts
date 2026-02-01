@@ -39,6 +39,7 @@ export const createLink = async (formData: FormData) => {
 			slug,
 			url: parsed.data.url,
 			userId: user?.id,
+			isCustomSlug: !!customSlug,
 		})
 		.returning()
 

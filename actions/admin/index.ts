@@ -1,5 +1,6 @@
 export { getAdminOverview } from './get-admin-overview'
 export { getAllUsers } from './get-all-users'
 export { getDatabaseInsights } from './get-database-insights'
+export { getLinkBreakdown } from './get-link-breakdown'
 export { getSiteWideAnalytics } from './get-site-wide-analytics'
 export { getUserDetails } from './get-user-details'

@@ -1,5 +1,5 @@
 import { getLinkWithAnalytics } from '@/actions'
-import { AnalyticsChart } from '@/components'
+import { AreaChart } from '@/components'
 import { formatDistanceToNow } from 'date-fns'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -56,7 +56,14 @@ const LinkAnalyticsPage = async ({ params }: { params: Promise<{ id: string }> }
 			<div className='card bg-base-200'>
 				<div className='card-body'>
 					<h2 className='card-title'>Clicks (Last 30 Days)</h2>
-					<AnalyticsChart data={clicksByDay} />
+					<AreaChart
+						data={clicksByDay}
+						xKey='date'
+						yKey='clicks'
+						xType='date'
+						valueLabel='click'
+						emptyMessage='No click data available'
+					/>
 				</div>
 			</div>
 

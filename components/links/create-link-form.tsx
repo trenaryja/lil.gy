@@ -1,9 +1,9 @@
 'use client'
 
 import { createLink } from '@/actions'
+import { ClipboardButton } from '@/components'
 import { useState, useTransition } from 'react'
 import { LuCircleAlert } from 'react-icons/lu'
-import { ClipboardButton } from './clipboard-button'
 
 export const CreateLinkForm = () => {
 	const [isPending, startTransition] = useTransition()

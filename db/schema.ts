@@ -8,6 +8,7 @@ export const links = pgTable('links', {
 	userId: text('user_id'), // WorkOS user ID (nullable for anonymous links)
 	clicks: integer('clicks').default(0).notNull(),
 	isActive: boolean('is_active').default(true).notNull(),
+	isCustomSlug: boolean('is_custom_slug').default(false).notNull(),
 	createdAt: timestamp('created_at').defaultNow().notNull(),
 	updatedAt: timestamp('updated_at').defaultNow().notNull(),
 })

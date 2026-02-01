@@ -1,13 +1,12 @@
 'use client'
 
 import { deleteLink, toggleLinkActive } from '@/actions'
+import { ClipboardButton, ConfirmButton } from '@/components'
 import type { links } from '@/db'
 import { formatDistanceToNow } from 'date-fns'
 import Link from 'next/link'
 import { useTransition } from 'react'
 import { LuChartBar, LuEye, LuEyeOff, LuTrash } from 'react-icons/lu'
-import { ClipboardButton } from './clipboard-button'
-import { ConfirmButton } from './confirm-button'
 
 type LinkCardProps = {
 	link: typeof links.$inferSelect
