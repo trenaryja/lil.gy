@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "eslint .",
-		"check": "tsc && bun run lint && bun run format -c && bun run build",
+		"check": "tsc && bun run format -c && bun run lint && bun run build",
 		"format": "prettier -w . !\"bun.lockb\"",
 		"get-latest": "bun update --latest -i",
 		"reinstall": "rm -rf node_modules && rm bun.lock && bun install",
@@ -15,6 +15,9 @@
 		"test:ui": "playwright test --ui"
 	},
 	"dependencies": {
+		"@dnd-kit/core": "^6.3.1",
+		"@dnd-kit/sortable": "^10.0.0",
+		"@dnd-kit/utilities": "^3.2.2",
 		"@mantine/hooks": "^8.3.13",
 		"@trenaryja/ui": "0.0.1-35",
 		"@vercel/postgres": "^0.10.0",
@@ -27,6 +30,7 @@
 		"react-dom": "^19.2.4",
 		"react-icons": "^5.5.0",
 		"recharts": "^3.7.0",
+		"remeda": "^2.33.4",
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {

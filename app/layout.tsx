@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: 'lil.gy' }
 const RootLayout = async ({ children }: Readonly<{ children: React.ReactNode }>) => {
 	return (
 		<html suppressHydrationWarning lang='en' className='scroll-smooth antialiased'>
-			<body className='min-h-screen grid grid-rows-[auto_1fr]'>
+			<body className='h-screen grid grid-rows-[auto_minmax(0,1fr)]'>
 				<ThemeProvider>
 					<Header />
 					{children}
