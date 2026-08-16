@@ -1,14 +1,9 @@
-import { defineConfig } from '@fullstacksjs/eslint-config'
+import { defineConfig } from '@trenaryja/config/eslint'
 
-/** @type {import('eslint').Linter.Config[]} */
-const config = [
-	...defineConfig({
-		files: ['**/*.ts', '**/*.tsx'],
-		rules: {
-			'perfectionist/sort-imports': 'off', // handled by vscode organize imports
-			'@typescript-eslint/consistent-type-definitions': ['error', 'type'],
-		},
-	}),
+export default [
+	...defineConfig(),
+	{
+		// Import order is handled by VS Code's organize-imports on save.
+		rules: { 'perfectionist/sort-imports': 'off' },
+	},
 ]
-
-export default config

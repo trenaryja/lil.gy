@@ -87,7 +87,7 @@ const AdminDatabasePage = async () => {
 										{recentClicks.map((click) => (
 											<tr key={click.id}>
 												<td className='font-mono text-xs'>{click.linkId.slice(0, 8)}...</td>
-												<td>{click.country || 'Unknown'}</td>
+												<td>{click.country ?? 'Unknown'}</td>
 												<td className='text-sm opacity-70'>{click.timestamp.toLocaleString()}</td>
 											</tr>
 										))}

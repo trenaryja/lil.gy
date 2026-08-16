@@ -43,6 +43,10 @@ export const AreaChart = <T extends Record<string, unknown>>({
 
 	const gradientId = `areaGradient-${xKey}-${yKey}`
 
+	// recharts' TypedDataKey stays deferred against our generic T, so widen to plain strings for the axis/area props.
+	const xDataKey: string = xKey
+	const yDataKey: string = yKey
+
 	return (
 		<div className='h-64 w-full'>
 			<ResponsiveContainer width='100%' height='100%'>
@@ -54,7 +58,7 @@ export const AreaChart = <T extends Record<string, unknown>>({
 						</linearGradient>
 					</defs>
 					<XAxis
-						dataKey={xKey}
+						dataKey={xDataKey}
 						tickFormatter={formatX}
 						stroke='currentColor'
 						opacity={0.5}
@@ -73,7 +77,7 @@ export const AreaChart = <T extends Record<string, unknown>>({
 					<Tooltip
 						content={({ active, payload, label }) => {
 							if (active && payload && payload.length) {
-								const value = payload[0].value as number
+								const value = payload[0]!.value as number // payload.length checked truthy above
 								const formattedLabel = formatXFull && typeof label === 'string' ? formatXFull(label) : label
 								const labelText = valueLabel ? `${value} ${valueLabel}${value !== 1 ? 's' : ''}` : String(value)
 
@@ -90,7 +94,7 @@ export const AreaChart = <T extends Record<string, unknown>>({
 					/>
 					<Area
 						type='monotone'
-						dataKey={yKey}
+						dataKey={yDataKey}
 						stroke='oklch(var(--p))'
 						fillOpacity={1}
 						fill={`url(#${gradientId})`}

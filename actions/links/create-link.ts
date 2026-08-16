@@ -13,11 +13,11 @@ export const createLink = async (formData: FormData) => {
 
 	const parsed = createLinkSchema.safeParse({ url, customSlug })
 
-	if (!parsed.success) return { success: false as const, error: parsed.error.issues[0].message }
+	if (!parsed.success) return { success: false as const, error: parsed.error.issues[0]!.message } // a failed parse always has >= 1 issue
 
 	const { user } = await withAuth()
 	const headersList = await headers()
-	const identifier = user?.id || headersList.get('x-forwarded-for') || 'unknown'
+	const identifier = user?.id ?? headersList.get('x-forwarded-for') ?? 'unknown'
 	const limits = user ? RATE_LIMITS.authenticated : RATE_LIMITS.anonymous
 
 	const rateCheck = await checkRateLimit(`create:${identifier}`, limits.limit, limits.window)
@@ -27,7 +27,7 @@ export const createLink = async (formData: FormData) => {
 		return { success: false as const, error: `Rate limit exceeded. Try again in ${minutes} minutes.` }
 	}
 
-	const slug = customSlug || (await generateSlug())
+	const slug = customSlug ?? (await generateSlug())
 
 	const existing = await db.query.links.findFirst({ where: eq(links.slug, slug) })
 
@@ -44,5 +44,5 @@ export const createLink = async (formData: FormData) => {
 		.returning()
 
 	revalidatePath('/dashboard')
-	return { success: true as const, data: link }
+	return { success: true as const, data: link! } // insert of one row always returns that row
 }

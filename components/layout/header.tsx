@@ -22,7 +22,7 @@ export const Header = async () => {
 								{user.profilePictureUrl ? (
 									<Image src={user.profilePictureUrl} alt='' fill className='rounded-full' />
 								) : (
-									<p>{user.firstName?.[0] || user.lastName?.[0] || user.email?.[0]?.toUpperCase() || '?'}</p>
+									<p>{user.firstName?.[0] ?? user.lastName?.[0] ?? user.email?.[0]?.toUpperCase() ?? '?'}</p>
 								)}
 							</div>
 							<ul tabIndex={0} className='dropdown-content menu bg-base-200 rounded-box shadow'>

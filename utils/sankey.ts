@@ -90,8 +90,8 @@ export const buildSankey = <T>(
 		const value = getValue(item)
 
 		for (let i = 0; i < path.length - 1; i++) {
-			const source = path[i]
-			const target = path[i + 1]
+			const source = path[i]! // loop bound i < length - 1 keeps i and i + 1 in range
+			const target = path[i + 1]!
 			const key = `${source}|${target}`
 			const existing = linkMap.get(key)
 

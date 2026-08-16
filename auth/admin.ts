@@ -2,7 +2,7 @@ import { withAuth } from '@workos-inc/authkit-nextjs'
 import { redirect } from 'next/navigation'
 
 const getAdminUserIds = (): string[] => {
-	const ids = process.env.ADMIN_USER_IDS || ''
+	const ids = process.env.ADMIN_USER_IDS ?? ''
 	return ids
 		.split(',')
 		.map((id) => id.trim())

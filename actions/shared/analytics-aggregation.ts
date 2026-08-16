@@ -8,11 +8,11 @@ export const aggregateClicksByDay = (clicks: ClickEvent[], days: number): { date
 	for (let i = days - 1; i >= 0; i--) {
 		const date = new Date()
 		date.setDate(date.getDate() - i)
-		clicksByDayMap.set(date.toISOString().split('T')[0], 0)
+		clicksByDayMap.set(date.toISOString().split('T')[0]!, 0) // ISO string always contains 'T'
 	}
 
 	clicks.forEach((click) => {
-		const date = click.timestamp.toISOString().split('T')[0]
+		const date = click.timestamp.toISOString().split('T')[0]! // ISO string always contains 'T'
 		if (clicksByDayMap.has(date)) clicksByDayMap.set(date, (clicksByDayMap.get(date) ?? 0) + 1)
 	})
 
@@ -23,7 +23,7 @@ export const aggregateByCountry = (clicks: ClickEvent[], limit: number = 10): { 
 	const countryMap = new Map<string, number>()
 
 	clicks.forEach((click) => {
-		const country = click.country || 'Unknown'
+		const country = click.country ?? 'Unknown'
 		countryMap.set(country, (countryMap.get(country) ?? 0) + 1)
 	})
 
@@ -40,7 +40,7 @@ export const aggregateByReferrer = (
 	const referrerMap = new Map<string, number>()
 
 	clicks.forEach((click) => {
-		const raw = click.referrer || 'Direct'
+		const raw = click.referrer ?? 'Direct'
 		const referrer = raw === 'Direct' ? raw : attempt(() => new URL(raw).hostname, { fallback: 'Direct' })
 		referrerMap.set(referrer, (referrerMap.get(referrer) ?? 0) + 1)
 	})
