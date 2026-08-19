@@ -1,25 +1,18 @@
-# CLAUDE.md
+# lil.gy
 
-## Commands
-
-Run `bun check` before committing (runs tsc, lint, format check, and build).
-
-## Code Style
-
-Beyond what prettier enforces (see `package.json`):
-
-- Prefix unused variables with underscore (`_unused`)
-- No braces for single-statement if/else blocks (e.g., `if (x) return` not `if (x) { return }`)
-- Implicit return for single-expression arrow functions
-- Early returns/guards on same line (e.g., `if (!user) return null`)
-- Use `??` vs `||` appropriately (nullish vs falsy)
+URL shortener. Custom slugs, click analytics, admin dashboard.
 
 ## Architecture Notes
 
-- Next.js 16 App Router with `proxy.ts` (replaces deprecated middleware.ts)
-- WorkOS AuthKit for auth - use `withAuth()` from `@workos-inc/authkit-nextjs`
-- Drizzle ORM with Neon Postgres - run `bunx drizzle-kit push` to sync schema
+- Auth via `withAuth()` from `@workos-inc/authkit-nextjs`
+- `bun run db:push` to sync schema changes (drizzle-kit needs the `--bun` runtime to load `.env.local`)
 
-## Environment Variables
+<!-- BEGIN:nextjs-agent-rules -->
 
-See `.env.example` for required variables. Copy to `.env.local` for local development.
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
