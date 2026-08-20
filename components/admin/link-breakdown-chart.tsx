@@ -59,7 +59,8 @@ export const LinkBreakdownChart = ({ data }: LinkBreakdownChartProps) => {
 					]}
 					value={metricType}
 					onChange={(e) => setMetricType(e.target.value as MetricType)}
-					classNames={{ container: 'join', item: 'join-item btn-sm' }}
+					className='reset join'
+					classNames={{ item: 'join-item btn-sm' }}
 				/>
 			</div>
 			<SankeyChart data={sankeyResult} emptyMessage='No link data available' />
